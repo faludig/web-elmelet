@@ -1,0 +1,253 @@
+\documentclass[a4paper, 12pt, oneside]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[magyar]{babel}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\usepackage{minted}
+\usepackage{ntheorem}
+\usepackage[table]{xcolor}
+\usepackage{longtable}
+
+
+\usepackage{ulem}
+
+\usepackage{tikz}
+\usetikzlibrary{er,positioning}
+
+
+\usepackage{hyperref}
+\hypersetup{pdfborder=0 0 0}
+
+\title{Web elmélet}
+\author{Hemrich-Frankl Gábor \\  \href{mailto:hemrichg@verebelyszki.hu}{hemrichg@verebelyszki.hu}}
+\date{\today}
+
+
+\newtheorem*{defin}{}
+
+
+\begin{document}
+\maketitle
+\pagebreak
+A jegyzet a 11. és 12. osztályok számára, a ``Web elmélet'' címszó alatt átadott tudást szeretné támogatni.
+\pagebreak
+
+\tableofcontents
+\pagebreak
+
+\part{Mi az a Web? És mi az a webfejlesztés?}
+
+A \textbf{web} szó szerint hálót jelent. Számítógépek hálójáról lesz szó. Egyébként pedig egy rövidítés, a World Wide Web kifejezés rövidítése, amit magyarul világhálónak nevezünk. Egy olyan rendszer, aminek segítségével digitális tartalmat tudunk megosztani egymással. A World Wide Web - mozaikszóként WWW - egy olyan konkrét kommunikációs protokollra is utal, ami az Internetre épül, vagyis \textit{a Web és az Internet két különböző dolog}.
+\bigbreak
+Mielőtt belemennénk a részletekbe, tisztázzuk, hogy mi is az a \textbf{kommunikációs protokoll}. A protokoll hivatalos érintkezési eljárásokat, rögzített szabályokat jelent. Ilyen szabályokat emberek között is rögzítunk, például meg van szabva hogy országok diplomatái milyen szabályok mentén kommunikálnak egymással, kórházi kezeléseknél milyen esetre milyen eljárásokat kell alkalmazni, tudományos kísérleteket hogyan kell elvégezni... \textit{A kommunikációs protokollok két vagy több fél kommunikációját szabják meg.} Jelen esetben számítógépek közötti kommunikációról beszélünk.
+
+\begin{center}
+\begin{defin}[Kommunikáció]
+TODO: ábra - adó, vevő, csatorna, üzenet, jel
+\end{defin}
+\end{center}
+
+\begin{center}
+\begin{defin}[Háló]
+TODO: ábra - egy teljes gráf, egy lánc, egy általános
+\end{defin}
+\end{center}
+
+A WWW-ről azt mondtuk, hogy az Internetre épül. Az Internet maga olyan összekapcsolt számítógéphálózatokat jelent, amik az Internet protokoll család alapján kommunikálnak egymással. Azért protokoll család, mert több protokollról van szó. Ha egyszerűen akarunk tekinteni rá, ahhoz, hogy kialakulhasson kapcsolat két gép között, egyrészt szükség van rá, hogy tudjuk, hogy a hálózatban honnan hova megy az üzenet - vagyis tudnunk kell címezni a forrást és a célt - valamint meg kell határoznunk, hogy milyen célből szeretnénk használni egy távoli gépet - vagyis milyen szolgáltatását szeretnénk igénybe venni. Az, hogy az Internet protokoll család alatt pontosan milyen protokollokat értünk, a későbbiekben kerül kifejtésre.
+\bigbreak
+Amikor arról van szó, hogy egy távoli gépet valamilyen célból használni szeretnénk, akkor ez a távoli gép már ki van alakítva úgy, hogy használni tudjuk a kijelölt célra. Azt a gépet, aminek segítségével elérjük a távolit \textbf{kliensnek} - magyarul ügyfélnek - hívjuk, a távoli gép pedig lesz a \textbf{szerver} - avagy kiszolgáló. A távoli gépen amit használunk, \textbf{szolgáltatásnak} - angolul \textit{service} - nevezik. A kliens kéréseket, vagy kérdéseket küld a szervernek, a szerver pedig teljesíti a kéréseket, vagy válaszol a kérdésekre.
+
+Maga a szerver és kliens elnevezés szoftverek felépítésénél is használt, így amikor egy szoftver szerver komponenséről és kliens komponenséről beszélünk egy darab gépről is lehet szó. Ilyenkor a szerver alatt azt a szolgáltatást kell érteni, amit a kliens komponenst használ. A működés ugyanúgy kérés-válasz alapú. Például fejlesztés alatt a saját gépünkre telepítünk adatbázisszervert, hogy ne a távolit terheljük.
+
+\begin{center}
+\begin{defin}[Szerver és kliens gépek]
+TODO: ábra - szerver gép és kliens gép, köztük valami útvonal
+\end{defin}
+\end{center}
+
+\begin{center}
+\begin{defin}[Szerver és kliens komponensek]
+TODO: ábra - ua. a viszony egy gépen
+\end{defin}
+\end{center}
+
+Amikor böngészőt nyitunk, és felmegyünk egy weboldalra, elindul egy kérés az interneten keresztül egy távoli gép felé, és válaszként visszakapunk egy fájlt. Amit beírunk, az lesz a használandó szerver címe, a visszakapott, a saját gépünkre letöltött fájlt pedig megjeleníti a böngésző. Az a gép, amiről küldjük a kérést lesz a kliens. Ezenkívül, a böngésző, mint szoftver maga is egy kliens alkalmazás, a szerver gépen pedig a program ami kiszolgálja nekünk a fájlt maga is egy szerver lesz - vagy helyesebben úgy mondjuk, hogy ami a szerveren fut és válaszol nekünk, az egy service. A szerver gépen, a szolgáltatás folyamatosan fut, függetlenül attól, hogy éppen használjuk-e vagy sem.
+
+\begin{center}
+\begin{defin}[Szerver és kliens, mint gépek és alkalmazások]
+TODO: ábra - két gép, kapcsolatuk, bennük a szoftverek
+\end{defin}
+\end{center}
+
+Amikor webfejlesztésről beszélünk, akkor olyan szoftverek programozására gondolunk, amik egymással az interneten kommunikálva működnek. Legáltalánosabban két részre tudjuk osztani a munkát. Van szó kliens oldali programozásról, és van szó szerver oldali programozásról. A kliens oldali programozás arról szól, hogy a böngészőben megjelenítendők hogyan nézzenek ki és hogyan működjenek. A szerver oldali programozáskor a szerveren futó szolgáltatást/szolgáltatásokat alakítjuk ki. A felhasználó szempontjából az előbbit frontend, az utóbbit backend programozásnak hívjuk. A backend-hez tartozhat még az adatbázis kezelés is, bár ez teljesen leválasztható.
+
+
+\section{Egy kis történet}
+\subsection*{60-as évek}
+\addcontentsline{toc}{section}{\protect\numberline{}60-as évek}
+
+Milyen problémák szülték egyáltalán a számítógépes hálózatokat? Leginkább kettő. Egyrészt, régen, amikor még nagyméretű számítógépek voltak, nagyon drága volt egy gép használata. Egyszerre csak egy ember tudta használni, ami nem volt sem költség- sem időhatékony. Létre kellett hozni egy olyan megoldást, amivel egy gépet párhuzamosan többen tudnak használni. Másrészről, időben a hidegháború közepén vagyunk, amikor leginkább tartottak az atomháborútól. A probléma az, hogy ha egy gépet önmagában elpusztítunk, a rajta tárolt információk is megsemmisülnek. Ezt a problmát oldotta meg az amerikai katonaság több, összekapcsolt gép hálózatával. Ha egy városra bombát dobnak, attól még más városok gépei nem tűnnek el, összekapcsolva a számítógépeket így egy olyan masszív struktúrát kapunk, amit nehezebb tönkretenni.
+\bigbreak
+
+Az első és legfontosabb technológia a telekommunikációban a \textbf{csomag} fogalomhoz köthető. A csomag csoportosított adat. Egy hosszabb üzenet elküldése helyett a hosszabb üzenetet kisebb darabokra osztjuk, ezek a kisebb darabok lesznek a csomagok. Két név köthető ide, akik párhuzamosan dolgoztak a csomagküldő és -fogadó megoldásokon: Paul Baran és Donald Davies.
+
+Paul Baran amerikai mérnök volt, ő kezdett el foglalkozni az atombomba okozta veszteség problémájával a 60-as évek elején. Amin ő dolgozott, úgy hivta, hogy elosztott alkalmazkodó üzenetblokk váltás - angolul distributed adaptive message block switching. Ennek a lényege, hogy a több darabra szeletelt üzenet darabjai egyszerre, külön útvonalakon halad a forrástól a célig. Donald Davies Wales-i informatikus volt. Ő kezdte el használni a csomag szót 1965-től.
+\bigbreak
+Egy csomag azon kívül, hogy egy üzenet darabja, tovább bontható fejlécre (\textbf{header}) és hasznos tartalomra (\textbf{payload}). A header azért felel, hogy az eszközök, amiken keresztül történik a kommunikáció tudják, hogy merre kell továbbítani a csomagot, a payload a tényleges tartalom, amit később a címzett feldolgoz.
+
+\begin{center}
+\begin{defin}[Csomag]
+TODO: ábra - header, payload
+\end{defin}
+\end{center}
+
+\begin{center}
+\begin{defin}[Üzenet haladása]
+TODO: ábra - üzenet csomagokra bontva, ezek külön útvonalakon továbbítva.
+\end{defin}
+\end{center}
+
+\subsection*{70-es évek}
+\addcontentsline{toc}{section}{\protect\numberline{}70-es évek}
+
+A 70-es évek elejére elkészültek az első számítógéphálózatok, amik csomagokra bontott üzenetekkel kommunikáltak egymással. A technológia angol megnevezése \textbf{packet switching}. A Londonban működő Nemzeti Fizikai Laboratóriumhoz köthető NPL hálózat volt az első, nem sokkal később az amerikai tudományos intézetek között kialakult, a Fejlett Kutatási Projektek Ügynöksége által fejlesztett ARPANET, a második ilyen számítógéphálózat.
+
+\begin{center}
+\begin{defin}[Egy csomag felépítése az NPL hálózatban]
+TODO: ábra - header: típus, hossz, cím; payload: adattípus adat
+\end{defin}
+\end{center}
+
+Az első, kontinenseket is összekötő hálózat úgy alakult ki, hogy az ARPANET-re rákapcsolták a NORSAR csapat számítógépeit - a csapat Norvég-Amerikai együttműködésben földrengések és atomrobbanások kutatásáért felel - valamint a University Collage London kutatócsopor gépeit. Ez a három hálózat együtt alkotta meg a legelső erőforrás és tartalommegosztó hálózatot. Az internetet, mint kifejezést erre a hálózatokat összekötő hálózatra használták először 1974-ben Vint Cerf és Bob Kahn kutatók, az inter-network szó rövidítéseként. A tudományos cikk címe: ``A Protocol for Packet Network Intercommunication'' - magyarul egy protokoll a csomagok hálozati kommunikációjához. Kidolgozásra került tehát az első internetes szabályrendszer, ami a csomagok küldését és fogadását szabja meg. Korábban a kisebb helyi hálózatok kutatói és fejlesztői saját protokollokat dolgoztak ki, a kommunikáció így a helyi hálózatoktól függött. Ez az első közös protokoll, ami elrejtette ezeket a különbségeket. És akkor hogy értsük is, álljunk meg egy pillanatra.
+
+\subsection*{Inter-network}
+\addcontentsline{toc}{section}{\protect\numberline{}Inter-network}
+
+Korábban szó volt arról, hogy az internet szóhasználat az inter-network szó röviditéseként jelent meg. Arról is szó volt, hogy az internet előtt, akár az amerikai, akár a norvégiai akár a britt számítógéphálózatok saját protokollok szerint kommunikáltak egymással. Milyen problémát kellett megoldani ahhoz, hogy összekötve ezeket a hálózatokat, a korábban külön hálózatra kapcsolt gépek egymással is tudjanak kommunikálni? Hogyan jut el egy csomag, aminek a feladója korábban az ARPANET hálózatnak, címzettje pedig a londoni egyetem hálózatának volt a része? 
+
+\begin{center}
+\begin{defin}[A probléma leegyszerűsítve]
+TODO: ábra - A, B, C gépek, A-B és B-C különböző kapcsolatok - pl. A-B vezetéknélküli, B-C vezetékes
+\end{defin}
+\end{center}
+
+Egészen addig nincs probléma, amíg olyan útvonalon halad a csomag, ami az egyik hálózatnak a része. Ez a hálózat már ki van alakítva, a saját szabályai szerint történik benne az adattovábbítás, az eszközök ismerik, hogy a hálózaton belül hogyan kell be- vagy kicsomagolni. Amint átlép a csomag a másik hálózatba, az adattovábbítás más szabályok szerint működik, a címzett nem ismeri, hogy a feladó hálózatában milyen szabályok szerint történt a becsomagolás. Ebből adódóan szükség van egy mindkét hálózatban alkalmazott szabályrendszerre, aminek segítségével a feladó és a címzett meg tudja érteni egymást. Erről szól az inter-network kifejezés. Különböző módokon működő hálózatokat kapcsolunk össze, ami mellé megalkotjuk a mindkét hálózatban, közösen alkalmazott szabályokat. Az első internetes protokoll, ezt a problémát oldotta meg.
+
+\subsection*{80-as évek}
+\addcontentsline{toc}{section}{\protect\numberline{}80-as évek}
+
+1981-ben az ARPANET-re rákapcsolták a szintén amerikai Nemzeti Tudományos Alap általt létrehozott CSNET-et, amit 1986-ban tovább bővítettek. A `86-os bővítéssel elsőként tudtak használni amerikai kutatók szuperszámítógépeket interneten keresztül. Az évtized végére már európai, ausztráliai és japán kutatószervezetek gépei is része voltak a hálózatnak. Az első kereskedelmi, vagyis a köznapi ember számára is elérhető internetszolgáltatók 1989-ben jöttek létre Amerikában és Ausztráliában.
+\bigbreak
+Az, hogy globális hálózattá tudott fejlődni és a hétköznapi ember számára is elérhetővé vált az internet, sokat köszönhet annak, hogy a manapság is használatban lévő, Internet protokoll családot szabványosították. A szabványosítás azt a folyamatot jelenti, amikor több résztvevő számára egységes feltételeket vagy szabályokat alakítunk ki annak érdekében, hogy ki tudjon alakulni valamiféle együttműködés. Az internet esetében ez azt jelenti, hogy amíg 1974-ben már megjelent egy Transmission Control Program-nak nevezett protokoll a csomagok hálózati kommunikációjának megalapozásához, a manapság is, és mindenhol használt formáját 1982-re érte el. A korábban egy darab protokollt felosztották kettő másik, együtt használt protokollra. Ez lesz a már sokszor megemlített Internet protokoll család. A család első tagjai: \textbf{TCP} (Transmission Control Protocol), \textbf{IP} (Internet Protocol). Ahhoz hogy értsük nagyjából, hogy miért és hogyan működnek ezek a protokollok, tegyünk megint egy kitérőt. 
+\bigbreak
+A hálózati kommunikációt két oldalról fogjuk most megközelíteni. Először arról lesz szó arról, hogy mit jelent kommunikációs témakörben a kapcsolat, majd tisztázzuk, hogy mi az a hálózati réteg.
+
+\subsection*{Kommunikáció és kapcsolat}
+\addcontentsline{toc}{section}{\protect\numberline{}Kommunikáció és kapcsolat}
+
+A hálózati kommunikációban megkülönböztetünk kapcsolat nélküli és kapcsolat-orientált kommunikációt. Kapcsolat nélküli a kommunikáció, amikor nem várunk választ, vagy bármiféle interakciót a vevő oldaláról. Egyszerűen csak elküldjük az üzenetet, ami vagy megérkezik, vagy nem - mi nem is feltétlenül tudunk erről.
+
+\begin{center}
+\begin{defin}[Kapcsolat nélküli kommuikáció]
+TODO: ábra - több üzenet egy irányban, a vevő - ha megkapja az üzenetet - feldolgozza, de nem válaszol.
+\end{defin}
+\end{center}
+
+Kapcsolat-orientált a kommunikáció, ha a megbízható üzenetváltás érdekében szeretnénk fenntartani a kommunikációhoz egy megbízható csatornát. Egy kapcsolat, hogy létrejöhessen, először ki kell építeni. Jó példa ennek a fajta munkának az elvégzésére a régi telefonállomások működése. A tárcsázó felhívta a folyamatosan üzemben lévő központot, a központban pedig összekapcsolták a tárcsázó és a tárcsázott telefonok fizikai áramköreit, majd megszólalt a túloldal. A kapcsolat kialakítása arról szól, hogy hogyan kerül folyamatos összeköttetésbe az adó és a vevő fél.
+
+\begin{center}
+\begin{defin}[Kapcsolat kialakítása]
+TODO: ábra - áramkör váltás, ami egy fix csatornát eredményez.
+\end{defin}
+\end{center}
+
+Az előbbi műveletnek a párja a kapcsolat bontása. Ez arról szól, hogy ha már nem áll szándékunkban kommunikálni, megszakítjuk a csatornát - például letesszük a telefont, vagy maga a szolgáltató bontja a kapcsolatot.
+
+\begin{center}
+\begin{defin}[Kapcsolat bontása]
+TODO: ábra - áramkör váltás, megszakad az útvonal, eltűnik a csatorna
+\end{defin}
+\end{center}
+
+Ezeken kívül fontos még, hogy a kapcsolatot fenntartsuk addig, amíg kommunikálni szeretnénk. Ez a régi telefonos példánál elég egyszerű, a központban dolgozó embert kellett csak rábírnunk, hogy maradjon nyugton - elég volt például megadott időnként pénzt dobálnunk a telefonfülkébe. Az, hogy van-e tényleges üzenetváltás a biztosított csatornában, a kapcsolat kialakítása, fenntartása és bontása szempontjából lényegtelen.
+
+\begin{center}
+\begin{defin}[Kapcsolat-orientált kommunikáció]
+TODO: ábra - kialakított csatorna és benne üzenetváltás
+\end{defin}
+\end{center}
+
+\subsection*{Hálózati réteg röviden}
+\addcontentsline{toc}{section}{\protect\numberline{}Hálózati réteg röviden}
+
+\begin{center}
+\begin{defin}[Média/médium]
+\end{defin}
+\end{center}
+
+A kommunikációban az adót és a vevőt egy csatorna köti össze. A valóságban konkrét eszközök biztosítják az üzenet haladását. Például ilyen egy vezeték. Amikor médiáról vagy médiumról van szó, a konkrét, fizikai eszközökre gondolunk. Ezen az eszközön keresztül haladnak a jelek - a példánknál maradva elektromos impulzusok. Az, hogy ezek az impulzusok milyen szabályrendszer szerint haladnak a vezetékben - például milyen sűrűn - függetlenek a vezetéktől, mint közvetítő közegtől. Amikor a jeleket értelmezzük, akkor viszont már az értelmezés, mint folyamat rögzített szabályok szerint történik. A jelsorozat így annak, aki nem tudja, hogy az adó és a vevő hogyan értelmezi az inpulzusokat, csak magát a vezetéket figyeli, nem értelmes. Ugyanakkor ha tisztában van az értelmezési szabályrendszerrel, mégis dekódolni tudja, meg tudja érteni az üzenetet. 
+\bigbreak
+Ami itt megjelent a fizikai, a vezetéken haladó elektromos impulzus haladásán túl, egy fizikailag megfoghatatlan része a kommunikációnak. A kommunikációs csatornában haladó üzenet, egyszerre létezik fizikailag, és nem fizikailag. Amikor valami fizikailag nem megfogható, azt mondjuk hogy logikai. Továbbra is a vezeték példánál maradva, ha eltüntetem a vezetéket - vagyis megszűntetem a csatornát a kommunikáló felek között - megszűnik a logikai rész is, mert nincs min haladjon az üzenet. A másik irány, amikor például nem folyik áram a vezetékben, vagyis nincs üzenet, amit logikailag meg tudnánk fogni nem igaz. A logikai megfoghatóság függ a fizikaitól, a fizikai a logikai nélkül is megmarad. Itt tehát a két dolog egymásra épül.
+
+\begin{center}
+\begin{defin}[Fizikai és logikai szintek]
+TODO: ábra - vezeték, amin halad a jelsorozat, felette a jelsorozat értelmezve
+\end{defin}
+\end{center}
+
+A kommunikációnak tehát a csatornában több, egymásra épülő rétege van. Van egy fizikai, és van egy logikai. (ezhova? Nem feltétlenül kell viszont csak kettő rétegben gondolkodni.) Amikor a médiumról beszéltünk, csak annyit kötöttünk ki, hogy konkrét eszköz. Ahhoz, hogy értsük a különbséget a médium, mint fizikai eszköz és a kommunikáció fizikai szintje között nézzük a következő fogalmat.
+
+\begin{center}
+\begin{defin}[Host/Hoszt]
+\end{defin}
+\end{center}
+
+Kommunikáció nincs adó és vevő nélkül. Amikor hálózaton keresztül egy csomag halad, hasonlóan a postához, a csomagnak van egy feladója és van egy címzettje. Mindegy, hogy mennyi és milyen eszközön keresztül halad a csomag, a lényeg, hogy a csomag tartalma ennek a két két végponak lesz érdekes. Ezeket a végpontokat hívjuk hosztoknak. A feladó fogja becsomagolni egy adott eljárás vagy szabály alapján, és fejléccel ellátni a fontos tartalmat, a címzett pedig ugyanígy, a rögzített szabályok mentén kicsomagolni. A hosztok tehát azok a végpontok a hálózatban, amik értelmezik és alkalmazzák a protokollokat. (Legalábbis nagyjából. Mi egyelőre csak a hálózati réteg fogalmat szeretnénk megérteni, amihez kiindulásnak ez a szemlélet elegendő lesz.) Ha adott tehát két, egymással kommunikáló hoszt, minden fizikai eszköz amin keresztülhalad az üzenet - például emlékszünk-e hálózat óráról arra, hogy switch vagy router? - tekinthető médiumnak. Fizikai szinten viszont lényegtelen, hogy milyen eszközökön keresztül halad a jel, továbbra is elektromos impulzusok utaznak.
+
+\subsection*{TCP/IP}
+\addcontentsline{toc}{section}{\protect\numberline{}TCP/IP}
+
+Az eddigiek során elég fogalmat vezettünk be ahhoz, hogy közelítőleg megértsük, hogy a TCP és az IP protokollok egy számítógépes hálózatban milyen szerepet töltenek be. Mivel elég összetett kommunikációs szabályrendszerekről van szó, nem fogjuk megtanulni, hogy pontosan hogy is épül fel a két konkrét protokoll. Ehelyett megpróbálunk eljutni oda, hogy a megértett fogalmainkkal megalkossunk egy, az internetéhez hasonló, saját, leegyszerűsített kommunikációs protokoll családot. Ehhez szimulálni fogunk egy számítógéphálózatot. Ha sikerül, megvizsgáljuk a protokollokat kapcsolat és réteg oldalról...
+
+TODO: network ábra, kommunikációs szabályok, játék
+
+TODO: handshake, session fogalmak
+
+?latency timeout? - nem kell ez már optimalizáció
+
+\subsection*{90-es évek}
+\addcontentsline{toc}{section}{\protect\numberline{}90-es évek}
+
+\subsection*{Manapság}
+\addcontentsline{toc}{section}{\protect\numberline{}Manapság}
+
+Első hét?
+
+\section{Internet felépítése?}
+\subsection*{Fizikai}
+\addcontentsline{toc}{section}{\protect\numberline{}Fizikai}
+
+\subsection*{Logikai?}
+\addcontentsline{toc}{section}{\protect\numberline{}Logikai?}
+
+\section{Webalkalmazás?}
+
+Második hét?
+
+\part{Protokollok?}
+\part{Fájl formátumok?}
+\part{Adatbázisok?}
+
+Harmadik hét?
+
+SOAP és REST? CRUD?
+
+Negyedik hét?
+
+Sorrend?
+
+\end{document}
