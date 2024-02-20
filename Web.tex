@@ -231,7 +231,65 @@ Magyarországon a legelső domain címet - sztaki.hu - 1991-ben a Számítástec
 \subsection*{HTML és HTTP röviden}
 \addcontentsline{toc}{section}{\protect\numberline{}HTML és HTTP röviden}
 
-TODO: hypertext, webszerver, port, URL, stateless, TCP-re épül (2022 óta 3.0-ás verzió amúgy nem), HTTP GET -> request, header, body, response ugyanígy, cURL
+A legelején arról volt szó, hogy a web - vagyis konkrétan a World Wide Web - egy olyan rendszer, amivel digitális tartalmat tudunk megosztani egymással. A World Wide Web első körben hypertext dokumentumok megosztásáró szólt. A hypertext olyan dokumentum fajta, ami más, szintén hypertext dokuentumokra hivatkozik, a hivatkozást hyperlinknek fogjuk hívni.
+
+\begin{center}
+\begin{defin}[Hypertext és hyperlink]
+TODO: ábra - hypertext dokumentumok közöttük a kapcsolat hyperlink
+\end{defin}
+\end{center}
+
+Ahhoz, hogy hypertext dokumentumokat kényelmesen nézegethessünk, kialakult a böngésző, mint szoftvertípus. A böngésző megjeleníti a dokumentumot, valamint a dokumentumban található hyperlink segítségével átnavigál a linkelt dokumentumra. Ahhoz, hogy ez egységesen tudjon működni, rögzítésre került egy konkrét fájl formátum. Egy hypertext dokumentumont a HTML - azaz HyperText Markup Language - leíró nyelv segítségével írunk meg, ami a dokumentum struktúráját határozza meg, a leírt struktúrát és tartalmat pedig a böngésző, a leírtak szerint jeleníti meg a felhasználó számára. A megjelenített dokumentum lesz maga a weboldal. A böngészőnek azon kívül, hogy van egy ilyen megjelenítő felülete van egy mezője, amibe a fájlok elérési útvonalát lehet beírni - ezt címsornak nevezzük.
+\bigbreak
+Szó volt arról is, hogy a digitális tartalmat távoli gépek között osztjuk meg, így eljutunk a szerver és kliens fogalmakhoz. Az a gép, amin fut a böngésző lesz a kliens gépünk, maga a böngésző pedig egy kliens szoftver. A böngésző, mint kliens szoftver párja - ami elküldi nekünk a megjelenítendő fájlt - lesz a web szerver. Egyrészt van egy távoli gépunk, ami kialakításra került ebből a célból, másrészt e célból fut egy program, ami magát a fájl elküldését végzni. A szervernek, mint gépnek lesz egy címe, a gépen pedig a keresett fájlnak szintén lesz egy címe, ezt kell a böngésző címsorában megadni. Egy szerveren több szolgáltatás is futhat - annak érdekében, hogy ezeket elkülönítsük, nem csak a szervernek van címe, hanem az adott szolgáltatásnak is: ezt az alcímet nevezzük portak. A port jelen esetben logikai szintű, az operációs rendszer határozza meg.
+\bigbreak
+A weboldalak ilyen módú megosztására a kliens és a szerver szoftvereken kívül egy új kommunikációs protokoll is bevezetésre került. A protokoll neve: HyperText Transfer Protocol - roviden HTTP. Amikor arról beszélünk, hogy van különbség az internet és a web között - mégpedig azt mondtuk, hogy a web az internetre épül - akkor arra kell gondolni, hogy a korábban közelítőleg megértett IP és TCP szintekre ráépül egy újabb, applikáció szintű réteg. Vagyis a HTTP szabályai szerint való kommunikációhoz szükség van egyrészt egy olyan protokollra, ami kapcsolatot alakít ki egy távoli gépen, valamint egy olyanra, ami elvégzi a címzést. Maga a kommunikáció a szerver és a kliens között kérés-válasz típusú, kapcsolat szempontjából pedig alapesetben egy kérés-válasz kör egy TCP kapcsolat keretében történik. Ezenkívül azt is mondjuk a HTTP-ről, hogy stateless, ami arra utal, hogy külön kérések és válaszok között, nincs semmilyen közös session szerver oldalon, azaz a kérések és válaszok egymástól függetlenül mennek végbe.
+
+\begin{center}
+\begin{defin}[Stateless]
+TODO: ábra - időben két kérés-válasz, nincs közös session.
+\end{defin}
+\end{center}
+
+Összességében tehát, ha egy távoli gépen szeretnénk elérni egy HTML fájl, tudnunk kell a távoli gép címét, a webszerver portját, és, hogy milyen protokoll mentén kommunikáljunk. Ezekből az információkból áll össze a címzés - a konkrét formátumot, amiben ezt meg kell adni URL-nek nevezzük. Az URL a Uniform Resource Locator kifejezés rövidítésre.
+
+\begin{center}
+\begin{defin}[URL részei]
+TODO: ábra - protocol, domain (subdomain), port, fájl útvonal
+\end{defin}
+\end{center}
+
+Mivel a HTTP protokoll használata széles körben elterjedt, ha megadjuk az URL elején a protokollt, a legtöbb esetben nem szükséges kiírnunk a port számát. Általánosan a 80-as portot szokás egy webszervernek adni.
+
+
+\begin{center}
+\begin{defin}[HTTP request]
+\end{defin}
+\end{center}
+
+\begin{minted}{http}
+GET /index.html HTTP/1.0
+Host: www.hf.nytta.hu
+
+Opcionális body
+\end{minted}
+
+\begin{center}
+\begin{defin}[HTTP response]
+\end{defin}
+\end{center}
+
+\begin{minted}{http}
+HTTP/1.0 200 OK
+Content-Type: text/html
+
+Szintén opcionális body
+\end{minted}
+
+
+TODO: payload vs body? (wrapping?)
+TODO: ha van kivetítő, ping?, cURL, netcat?, böngésző fejlesztőeszközök
+
 
 \subsection*{Manapság}
 \addcontentsline{toc}{section}{\protect\numberline{}Manapság}
