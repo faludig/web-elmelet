@@ -224,9 +224,9 @@ TODO: handshake, session fogalmak
 
 A 90-es évek elejére megjelent az optikai adattovábbítás, ami újabb lehetőségeket nyitott a kereskedelmi felhasználás terén. Az amerikai MCI Mail és a CompuServe szolgáltatók azzal, hogy 89 közepén rákapcsolódtak az internetre, már akkor félmillió kereskedelmi felhasználó számára biztosítottak internet és email szolgáltatást. 90 márciusában összekötötték az amerikai földrészt és európát, ezzel megjelent az első nagysebességű összeköttetés a New York-i Cornell egyetem és a CERN között. (Nagy sebesség alatt itt 1.5 Mbit/s-et kell érteni. Összehasonlításként, ma már nekünk is elérhető Gbit-es, optikai kábeles internet.) Korábban rádiójelekkel és műholdakon keresztük kommuniáltak nagy távolságban, de ez sokkal lassab adatátvitelt biztosított.
 \bigbreak
-Még mindig 1990-ben járunk, amikor TIm Berners-Lee megírta az első web böngészőt, amit WorldWideWeb-nek nevezett el. Emellé megalkota a HTTP - HyperText Transfer Protocol - 0.9-es verzióját, valamint a HTML-t, vagyis a HyperText Markup Language-t, és lefejlesztette az első web szervert. Az első böngésző amellett, hogy megjelenítette a HTML-ben leírt weboldalakat, editor-ként is tudott működni, valamint képes volt fájlok továbbítására az FTP protokollon keresztül. Az első weboldalak magát a projektet mutatták be. 1994-ben és 1996-ban már megjelentek az első online banki szolgáltatások: a Stanford Federal Credit Union és az OP Financial Group pénzintézetek az első szolgáltatók. Utóbbi Európában volt az első. 1995-ben az USA teljes internethálózatát kereskedelmi forgalomba hozták.
+Még mindig 1990-ben járunk, amikor Tim Berners-Lee megírta az első web böngészőt, amit WorldWideWeb-nek nevezett el. Emellé megalkota a HTTP - HyperText Transfer Protocol - 0.9-es verzióját, valamint a HTML-t, vagyis a HyperText Markup Language-t, és lefejlesztette az első web szervert. Az első böngésző amellett, hogy megjelenítette a HTML-ben leírt weboldalakat, editor-ként is tudott működni, valamint képes volt fájlok továbbítására az FTP protokollon keresztül. Az első weboldalak magát a projektet mutatták be. 1994-ben és 1996-ban már megjelentek az első online banki szolgáltatások: a Stanford Federal Credit Union és az OP Financial Group pénzintézetek az első szolgáltatók. Utóbbi Európában volt az első. 1995-ben az USA teljes internethálózatát kereskedelmi forgalomba hozták.
 \bigbreak
-Magyarországon a legelső domain címet - sztaki.hu - 1991-ben a Számítástechnikai és Automatizálási Kutatóintézet számára jegyezték be. 1995-től a Matáv szolgáltatónál lehetett telefonmodemes szolgáltatást igényelni. A telefonmodem a telefonos hálózaton keresztül vitt analóg jelet alakította át digitálissá. 1999-től megjelent az ISDN hálózati technológia, ami már digitális jelet - vagyis 0 és 1 értékeket - szállított. Az első magyar írportál, az iNteRNeTTo 1998-ban indult, ennek a szerkesztőségéből állt össze 1999-ben a ma is működő index.hu.
+Magyarországon a legelső domain címet - sztaki.hu - 1991-ben a Számítástechnikai és Automatizálási Kutatóintézet számára jegyezték be. 1995-től a Matáv szolgáltatónál lehetett telefonmodemes szolgáltatást igényelni. A telefonmodem a telefonos hálózaton keresztül vitt analóg jelet alakította át digitálissá. 1999-től megjelent az ISDN hálózati technológia, ami már digitális jelet - vagyis 0 és 1 értékeket - szállított. Az első magyar hírportál, az iNteRNeTTo 1998-ban indult, ennek a szerkesztőségéből állt össze 1999-ben a ma is működő index.hu.
 
 \subsection*{HTML és HTTP röviden}
 \addcontentsline{toc}{section}{\protect\numberline{}HTML és HTTP röviden}
@@ -240,11 +240,25 @@ TODO: ábra - hypertext dokumentumok közöttük a kapcsolat hyperlink
 \end{center}
 
 Ahhoz, hogy hypertext dokumentumokat kényelmesen nézegethessünk, kialakult a böngésző, mint szoftvertípus. A böngésző megjeleníti a dokumentumot, valamint a dokumentumban található hyperlink segítségével átnavigál a linkelt dokumentumra. Ahhoz, hogy ez egységesen tudjon működni, rögzítésre került egy konkrét fájl formátum. Egy hypertext dokumentumont a HTML - azaz HyperText Markup Language - leíró nyelv segítségével írunk meg, ami a dokumentum struktúráját határozza meg, a leírt struktúrát és tartalmat pedig a böngésző, a leírtak szerint jeleníti meg a felhasználó számára. A megjelenített dokumentum lesz maga a weboldal. A böngészőnek azon kívül, hogy van egy ilyen megjelenítő felülete van egy mezője, amibe a fájlok elérési útvonalát lehet beírni - ezt címsornak nevezzük.
+\begin{center}
+\begin{defin}[Böngésző]
+TODO: ábra - címsor és hypertext tartalom, linkre új oldal
+\end{defin}
+\end{center}
 \bigbreak
 Szó volt arról is, hogy a digitális tartalmat távoli gépek között osztjuk meg, így eljutunk a szerver és kliens fogalmakhoz. Az a gép, amin fut a böngésző lesz a kliens gépünk, maga a böngésző pedig egy kliens szoftver. A böngésző, mint kliens szoftver párja - ami elküldi nekünk a megjelenítendő fájlt - lesz a web szerver. Egyrészt van egy távoli gépunk, ami kialakításra került ebből a célból, másrészt e célból fut egy program, ami magát a fájl elküldését végzni. A szervernek, mint gépnek lesz egy címe, a gépen pedig a keresett fájlnak szintén lesz egy címe, ezt kell a böngésző címsorában megadni. Egy szerveren több szolgáltatás is futhat - annak érdekében, hogy ezeket elkülönítsük, nem csak a szervernek van címe, hanem az adott szolgáltatásnak is: ezt az alcímet nevezzük portak. A port jelen esetben logikai szintű, az operációs rendszer határozza meg.
+\begin{center}
+\begin{defin}[Web szerver és kliens]
+TODO: ábra - szerver és port, kliens kérés-válasz
+\end{defin}
+\end{center}
 \bigbreak
 A weboldalak ilyen módú megosztására a kliens és a szerver szoftvereken kívül egy új kommunikációs protokoll is bevezetésre került. A protokoll neve: HyperText Transfer Protocol - roviden HTTP. Amikor arról beszélünk, hogy van különbség az internet és a web között - mégpedig azt mondtuk, hogy a web az internetre épül - akkor arra kell gondolni, hogy a korábban közelítőleg megértett IP és TCP szintekre ráépül egy újabb, applikáció szintű réteg. Vagyis a HTTP szabályai szerint való kommunikációhoz szükség van egyrészt egy olyan protokollra, ami kapcsolatot alakít ki egy távoli gépen, valamint egy olyanra, ami elvégzi a címzést. Maga a kommunikáció a szerver és a kliens között kérés-válasz típusú, kapcsolat szempontjából pedig alapesetben egy kérés-válasz kör egy TCP kapcsolat keretében történik. Ezenkívül azt is mondjuk a HTTP-ről, hogy stateless, ami arra utal, hogy külön kérések és válaszok között, nincs semmilyen közös session szerver oldalon, azaz a kérések és válaszok egymástól függetlenül mennek végbe.
-
+\begin{center}
+\begin{defin}[Applikáció rétegű HTTP kliens és szerver]
+TODO: ábra - TCP/IP-s ábra, applikáció réteg HTTP protokoll
+\end{defin}
+\end{center}
 \begin{center}
 \begin{defin}[Stateless]
 TODO: ábra - időben két kérés-válasz, nincs közös session.
@@ -268,7 +282,7 @@ Mivel a HTTP protokoll használata széles körben elterjedt, ha megadjuk az URL
 \end{center}
 
 \begin{minted}{http}
-GET /index.html HTTP/1.0
+GET /index.html HTTP/1.1
 Host: www.hf.nytta.hu
 
 Opcionális body
@@ -280,7 +294,7 @@ Opcionális body
 \end{center}
 
 \begin{minted}{http}
-HTTP/1.0 200 OK
+HTTP/1.1 200 OK
 Content-Type: text/html
 
 Szintén opcionális body
@@ -288,11 +302,95 @@ Szintén opcionális body
 
 
 TODO: payload vs body? (wrapping?)
-TODO: ha van kivetítő, ping?, cURL, netcat?, böngésző fejlesztőeszközök
+TODO: ha van kivetítő, ping?, tracert, cURL, netcat?, böngésző fejlesztőeszközök
+\pagebreak
 
+\subsection*{CRUD műveletek}
+\addcontentsline{toc}{section}{\protect\numberline{}CRUD műveletek}
 
-\subsection*{Manapság}
-\addcontentsline{toc}{section}{\protect\numberline{}Manapság}
+Amikor a web-et böngésszük, általában nem csak fájlokat töltünk le és jelenítünk meg. Interaktív webapplikációk esetén tartalmat létrehozni, módosítani és törölni is tudunk. A létrehozás, olvasás, szerkesztés és törlés olyan műveletek, amik szinte mindenhol jelen vannak. Például Youtube-ra fel tölthetünk videókat: kiválasztjuk a feltölteni kívánt fájlt és megadjuk a címét, megnézhetjük a videót, módosíthatunk rajta ,vagy törölhetünk. Hasonlóan bármely közösségi média felületen poszt-okat kreálhatunk - amit mások olvashatnak -, szerkeszthetjük, törölhetjuk. De a Messenger-ben is üzeneteket írunk, olvasunk, szerkeszthetjük és törölhetjuk. Ezek annyira alapvető dolgok, hogy van is rá egy mozaikszó: \textbf{CRUD} - ami az angol Create, Read, Update, Delete szavakat takarja.
+\bigbreak
+Általánosan nem csak web-es kontextusban használjuk ezeket. Jó példa erre az adatbáziskezeléskor használt INSERT, SELECT, UPDATE, DELETE parancsok használata. Az INSERT-tel új sorokat szúrunk be, a SELECT-tel olvasunk, az UPDATE-tel sorokat módosítunk, a DELETE-tel pedig sorokat törlünk. De nem csak sorokra alkalmazhatjuk ezeket a műveleteket, egy VIEW-t vagy bármilyen más objektumot is létrehozunk, megnézhetjük a definícióját, módosíthatuk és törölhetünk.
+
+\begin{center}
+\begin{defin}[CRUD és SQL]
+TODO: ábra - sorok esetén, report generálálás programozva -> VIEW def?
+\end{defin}
+\end{center}
+
+Megmaradva web-es környezetben viszont még azért is fontos lesz a CRUD, mert web service-ek írásakor - vagyis olyan applikációk fejlesztésekor, ahol HTTP kéréseket dolgozunk fel - a különböző CRUD műveletekre különböző HTTP metódusokat használunk. De mi is az a HTTP metódus?
+
+\subsection*{HTTP metódusok I.}
+\addcontentsline{toc}{section}{\protect\numberline{}HTTP metódusok I.}
+
+Ha megnézzük a fenti példa HTTP request-et, az egész egy GET szóval kezdődik, utána pedig szóközzel elválasztva egy URL következik, ami egy konkrét HTML fájlra mutat. A HTTP request-ek első szava azt mondja meg, hogy mit csináljunk az URL által meghatározott dologgal. A GET a fenti, konkrét esetben azt mondja, hogy olvasni szeretnénk az index.html fájlt.
+\bigbreak
+Ha mondjuk van egy olyan szolgáltatásunk, amivel a felhasználó újabb oldalakat tölthet fel, módosíthat és törölhet, akkor már nem csak olvasásról, mint műveletről beszélhetünk, hanem megjelenik további másik három, amivel így eljutunk a fent részletezett CRUD műveletnégyeshez. Minden műveletnek megvan a HTTP metódus megfelelője:
+
+\begin{center}
+\begin{tabular}{ | c | c | }
+ \hline
+Create & POST, PUT  \\
+ \hline
+Read & GET \\
+ \hline
+Update & PUT, PATCH \\
+ \hline
+Delete & DELETE  \\
+ \hline
+\end{tabular}
+\end{center}
+
+Láthatjuk, hogy van olyan CRUD művelet, aminél kétféle HTTP metódust is használhatunk, pl.: Create; valamint olyan HTTP metódus, amit kétféle CRUD művelet elvégzésére is használhatunk, pl.: PUT. Egyelőre nem foglalkozunk a POST és PATCH metódokkal. Nézzük a többit sorrendben. (Ezen a ponton a response-okról sem lesz még szó.)
+
+\begin{center}
+\begin{defin}[PUT]
+\end{defin}
+\end{center}
+
+A PUT metódust használjuk egyrészt új fájlok feltöltésére, valamint már létező fájlok felülírására is. Egy egyszerű példa a következő:
+
+\begin{minted}{http}
+PUT /new.html HTTP/1.1
+Host: www.hf.nytta.hu
+Content-type: text/html
+Content-length: 20
+
+<p>Hello World!</p>
+\end{minted}
+
+A PUT esetében lényegtelen, hogy a \verb|new.html| fájl létezik-e, ha a kérést sikerült teljesíteni, a \verb|www.hf.nytta.hu/new.html| oldal tartalma megegyezik a request body-ban található tartalommal, így használhatjuk Create, vagy Update műveletre is.
+
+\begin{center}
+\begin{defin}[GET]
+\end{defin}
+\end{center}
+
+A GET metódust csak a Read művelet megvalósítására használjuk. Ha az előbbi \verb|new.html| fájlt szeretnénk olvasni, elég nekünk egy üres body-val elküldött request:
+
+\begin{minted}{http}
+GET /new.html HTTP/1.1
+Host: www.hf.nytta.hu
+\end{minted}
+
+A válasz a korábbi példa response-hoz hasonló.
+\pagebreak
+\begin{center}
+\begin{defin}[DELETE]
+\end{defin}
+\end{center}
+
+\begin{minted}{http}
+DELETE /new.html HTTP/1.1
+Host: www.hf.nytta.hu
+\end{minted}
+
+A törlés művelet esetén a szintaktika ugyanaz, mint a GET-nél, csak a DELETE kulcsszóval kezdődik a request. Ha sikeres a törlés, többé már nem lesz elérhető tartalom a \verb|www.hf.nytta.hu/new.html| címen.
+
+\subsection*{Webapplikáció}
+\addcontentsline{toc}{section}{\protect\numberline{}Webapplikáció}
+
+TODO: Nézzük mit tanultunk eddig. Mi az a web és mi az a webfejlesztés? Internet és web különbség: egymásra épül. Web kliens, web szerver, HTTP. Applikáció réteg/internet: TCP/IP. Azt mondtuk, hogy nem ugyanaz a kettő. Mostanra meg kellett érteni, hogy miért is nem...
 
 
 \end{document}
